@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "700022587848",
+    "firebase_url": "https://fcm-codelab-cb62a-default-rtdb.firebaseio.com",
+    "project_id": "fcm-codelab-cb62a",
+    "storage_bucket": "fcm-codelab-cb62a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700022587848:android:5a0470f69decc0db5000fd",
+        "android_client_info": {
+          "package_name": "com.oliversolutions.dev.calcuonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700022587848-lt1uh4ag49qg79pj0s0oij513meh2bhm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ-iGen6uc75FEsKOS8erlPiYkwYM_EgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700022587848-lt1uh4ag49qg79pj0s0oij513meh2bhm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
