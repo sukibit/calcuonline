@@ -40,6 +40,14 @@ class CalculatorDatabaseDataSourceImpl @Inject constructor(
         }
     }
 
+    override suspend fun saveCalculator(calculatorData: CalculatorData) {
+        return executeDatabaseOperation {
+            calculatorDatabase.calculatorDao().insertCalculator(
+                calculatorData.toEntity()
+            )
+        }
+    }
+
     override suspend fun saveCalculators(calculators: List<CalculatorData>) {
         return executeDatabaseOperation {
             calculatorDatabase.calculatorDao().insertCalculators(

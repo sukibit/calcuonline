@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Calcuonline</string>
+    <string name="age_calculator_title">Age calculator</string>
+    <string name="database_error">An error occurred while accessing the database. Please try again later.</string>
+    <string name="retrofit_error">Something went wrong while communicating with the server. Please check your internet connection and try again later.</string>
+    <string name="firebase_error">Something went wrong while interacting with Firebase services. Please try again later.</string>
+    <string name="age_calculator_days">days</string>
+    <string name="age_calculator_hours">hours</string>
+    <string name="age_calculator_minutes">minutes</string>
+    <string name="age_calculator_select_date">Select a date</string>
+    <string name="age_calculator_button">Calculate</string>
 </resources>

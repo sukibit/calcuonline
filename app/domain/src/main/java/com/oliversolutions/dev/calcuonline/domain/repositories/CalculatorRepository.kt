@@ -9,4 +9,5 @@ interface CalculatorRepository {
     suspend fun getCategories(): List<Category>
     suspend fun getCalculatorResult(calculatorQuery: CalculatorQuery): String
     suspend fun loadData()
+    suspend fun saveCalculator(calculator: Calculator)
 }

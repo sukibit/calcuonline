@@ -1,7 +1,7 @@
 package com.oliversolutions.dev.calcuonline.framework.datasources.cloud.retrofit
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.oliversolutions.dev.calcuonline.data.exceptions.RetrofitDataException
+import com.oliversolutions.dev.calcuonline.data.exceptions.DataException
 import javax.inject.Inject
 
 open class BaseRetrofitDataSource @Inject constructor(private val crashlytics: FirebaseCrashlytics) {
@@ -10,7 +10,7 @@ open class BaseRetrofitDataSource @Inject constructor(private val crashlytics: F
             operation()
         } catch (e: Exception) {
             crashlytics.recordException(e)
-            throw RetrofitDataException("Retrofit operation failed", e)
+            throw DataException.RetrofitException("Retrofit operation failed", e)
         }
     }
 }

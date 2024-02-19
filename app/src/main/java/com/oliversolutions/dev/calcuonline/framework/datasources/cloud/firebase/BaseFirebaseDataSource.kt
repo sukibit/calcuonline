@@ -1,7 +1,7 @@
 package com.oliversolutions.dev.calcuonline.framework.datasources.cloud.firebase
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.oliversolutions.dev.calcuonline.data.exceptions.FirebaseDataException
+import com.oliversolutions.dev.calcuonline.data.exceptions.DataException
 import javax.inject.Inject
 
 open class BaseFirebaseDataSource @Inject constructor(private val crashlytics: FirebaseCrashlytics) {
@@ -10,7 +10,7 @@ open class BaseFirebaseDataSource @Inject constructor(private val crashlytics: F
             operation()
         } catch (e: Exception) {
             crashlytics.recordException(e)
-            throw FirebaseDataException("Firebase operation failed", e)
+            throw DataException.FirebaseException("Firebase operation failed", e)
         }
     }
 }

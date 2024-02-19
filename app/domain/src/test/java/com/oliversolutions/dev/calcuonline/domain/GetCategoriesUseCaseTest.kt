@@ -1,6 +1,5 @@
 package com.oliversolutions.dev.calcuonline.domain
 
-import com.oliversolutions.dev.calcuonline.domain.exceptions.DatabaseException
 import com.oliversolutions.dev.calcuonline.domain.models.Category
 import com.oliversolutions.dev.calcuonline.domain.repositories.CalculatorRepository
 import com.oliversolutions.dev.calcuonline.domain.usecases.GetCategoriesUseCase

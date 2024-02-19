@@ -1,6 +1,5 @@
 package com.oliversolutions.dev.calcuonline.domain
 
-import com.oliversolutions.dev.calcuonline.domain.exceptions.RetrofitException
 import com.oliversolutions.dev.calcuonline.domain.models.CalculatorQuery
 import com.oliversolutions.dev.calcuonline.domain.models.CalculatorType
 import com.oliversolutions.dev.calcuonline.domain.repositories.CalculatorRepository

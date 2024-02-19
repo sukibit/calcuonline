@@ -1,65 +1,36 @@
 package com.oliversolutions.dev.calcuonline.presentation
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.lifecycleScope
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import com.google.firebase.FirebaseApp
 import com.oliversolutions.dev.calcuonline.R
+import com.oliversolutions.dev.calcuonline.presentation.composables.screens.CalculatorScreen
 import com.oliversolutions.dev.calcuonline.presentation.theme.CalcuonlineTheme
+import com.oliversolutions.dev.calcuonline.presentation.viewmodels.CalculatorViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : BaseActivity() {
 
-    private val viewModel: MainViewModel by viewModels()
+    override val viewModel: CalculatorViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        FirebaseApp.initializeApp(this)
-
-        getString(R.string.app_name)
-
-        val appName = resources.getIdentifier("app_name", "string", packageName)
-
-        lifecycleScope.launch(Dispatchers.Main) {
-            viewModel.loadData()
-        }
-
-        setContent {
+    @Composable
+    override fun setContentWithExtras() {
+        val selectedCalculator by viewModel.selectedCalculator.observeAsState()
+        viewModel.getCalculator()
+        selectedCalculator?.let {
             CalcuonlineTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
-                }
+                CalculatorScreen(it, viewModel)
             }
         }
     }
 
-
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!", modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CalcuonlineTheme {
-        Greeting("Android")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
+        getString(R.string.app_name)
     }
 }

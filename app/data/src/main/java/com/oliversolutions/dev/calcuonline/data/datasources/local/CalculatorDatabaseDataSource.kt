@@ -8,4 +8,5 @@ interface CalculatorDatabaseDataSource {
     suspend fun getCategories(): List<CategoryData>
     suspend fun saveCategories(categories: List<CategoryData>)
     suspend fun saveCalculators(calculators: List<CalculatorData>)
+    suspend fun saveCalculator(calculatorData: CalculatorData)
 }

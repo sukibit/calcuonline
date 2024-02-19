@@ -1,12 +1,7 @@
 package com.oliversolutions.dev.calcuonline.data.repositories
 
-import com.oliversolutions.dev.calcuonline.data.exceptions.DatabaseDataException
-import com.oliversolutions.dev.calcuonline.data.exceptions.FirebaseDataException
-import com.oliversolutions.dev.calcuonline.data.exceptions.RetrofitDataException
-import com.oliversolutions.dev.calcuonline.domain.exceptions.DatabaseException
-import com.oliversolutions.dev.calcuonline.domain.exceptions.FirebaseException
-import com.oliversolutions.dev.calcuonline.domain.exceptions.RepositoryException
-import com.oliversolutions.dev.calcuonline.domain.exceptions.RetrofitException
+import com.oliversolutions.dev.calcuonline.data.exceptions.DataException
+import com.oliversolutions.dev.calcuonline.domain.exceptions.DomainException
 
 abstract class BaseRepository {
     protected suspend fun <T> run(
@@ -21,10 +16,10 @@ abstract class BaseRepository {
 
     protected open fun mapToDomainException(e: Throwable): Exception {
         return when (e) {
-            is FirebaseDataException -> FirebaseException(e.message.orEmpty(), e)
-            is DatabaseDataException -> DatabaseException(e.message.orEmpty(), e)
-            is RetrofitDataException -> RetrofitException(e.message.orEmpty(), e)
-            else -> RepositoryException(e.message.orEmpty(), e)
+            is DataException.FirebaseException -> DomainException.FirebaseException(e.message.orEmpty(), e)
+            is DataException.DatabaseException -> DomainException.DatabaseException(e.message.orEmpty(), e)
+            is DataException.RetrofitException -> DomainException.RetrofitException(e.message.orEmpty(), e)
+            else -> DomainException.RepositoryException(e.message.orEmpty(), e)
         }
     }
 }

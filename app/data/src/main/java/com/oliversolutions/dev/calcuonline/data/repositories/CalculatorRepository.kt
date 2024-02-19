@@ -4,6 +4,7 @@ import com.oliversolutions.dev.calcuonline.data.datasources.local.CalculatorData
 import com.oliversolutions.dev.calcuonline.data.datasources.cloud.CalculatorFirebaseDataSource
 import com.oliversolutions.dev.calcuonline.data.datasources.cloud.CalculatorRetrofitDataSource
 import com.oliversolutions.dev.calcuonline.data.datasources.local.CalculatorCacheDataSource
+import com.oliversolutions.dev.calcuonline.data.models.CalculatorData
 import com.oliversolutions.dev.calcuonline.data.models.CalculatorQueryData
 import com.oliversolutions.dev.calcuonline.data.models.CalculatorTypeData
 import com.oliversolutions.dev.calcuonline.domain.models.Calculator
@@ -25,6 +26,12 @@ class CalculatorRepositoryImpl @Inject constructor(
             databaseDataSource.getCalculators().map {
                 it.toDomain()
             }
+        }
+    }
+
+    override suspend fun saveCalculator(calculator: Calculator) {
+        run {
+            databaseDataSource.saveCalculator(calculator.toData())
         }
     }
 
@@ -56,15 +63,14 @@ class CalculatorRepositoryImpl @Inject constructor(
         input = this.input,
         calculatorType = when (this.calculatorType) {
             CalculatorType.AGE -> CalculatorTypeData.AGE
-            CalculatorType.AVERAGE_SPEED -> CalculatorTypeData.AVERAGE_SPEED
-            CalculatorType.ASCENDANT -> CalculatorTypeData.ASCENDANT
-            CalculatorType.BABY_GENDER -> CalculatorTypeData.BABY_GENDER
-            CalculatorType.BIKE_SIZE -> CalculatorTypeData.BIKE_SIZE
-            CalculatorType.BINARY -> CalculatorTypeData.BINARY
-            CalculatorType.BIORHYTHM -> CalculatorTypeData.BIORHYTHM
-            CalculatorType.BMI -> CalculatorTypeData.BMI
-            CalculatorType.BMR -> CalculatorTypeData.BMR
-            CalculatorType.BODY_FAT -> CalculatorTypeData.BODY_FAT
         }
+    )
+
+    private fun Calculator.toData() = CalculatorData(
+        resId = this.resId,
+        isFavorite = this.isFavorite,
+        isFeatured = this.isFeatured,
+        iconUrl = this.iconUrl,
+        categoryId = this.categoryId,
     )
 }
